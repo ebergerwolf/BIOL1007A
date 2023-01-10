@@ -1,0 +1,51 @@
+---
+title: "Assignment 1"
+author: "Ev Berger-Wolf"
+date: "2023-01-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This is a script. You can save code here to run again
+
+Quick way to run code: Command + Enter
+
+For example...
+
+```{r addition}
+2+2
+```
+Output should be in the Console
+
+Variables show up in your Environment
+
+Assign variables using var <- value
+
+```{r variable assignment}
+a <- 2+2
+```
+
+Terminal: Your shell, where you can speak directly to your computer
+
+Common shell command: ls --> Lists your directories
+
+setwd() - sets working directory
+
+getwd() - gets working directory
+
+Shortcut for help(): ?function or ??general_search
+
+*Always name your homepage index.Rmd
+
+# Terminal git commands to know
+
+git status -> tells you how up to date you are with GitHub
+
+git add -A -> adds untracked changes to the stage
+
+git commit -am 'message' -> commits all changes on the stage with the message
+
+git push -> Pushes changes to GitHub cloud
