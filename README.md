@@ -1,2 +1,2 @@
 # BIOL1007A
-Bio in R
+Repo for Biology in R
