@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# This is a script. You can save code here to run again
+## This is a script. You can save code here to run again
 
 Quick way to run code: Command + Enter
 
@@ -20,7 +20,7 @@ For example...
 ```
 Output should be in the Console
 
-Variables show up in your Environment
+#### Variables show up in your Environment
 
 Assign variables using var <- value
 
@@ -28,7 +28,7 @@ Assign variables using var <- value
 a <- 2+2
 ```
 
-Terminal: Your shell, where you can speak directly to your computer
+#### Terminal: Your shell, where you can speak directly to your computer
 
 Common shell command: ls --> Lists your directories
 
@@ -40,7 +40,7 @@ Shortcut for help(): ?function or ??general_search
 
 *Always name your homepage index.Rmd
 
-# Terminal git commands to know
+#### Terminal git commands to know
 
 git status -> tells you how up to date you are with GitHub
 

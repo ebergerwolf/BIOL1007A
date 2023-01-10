@@ -1,5 +1,5 @@
 ---
-title: "Homepage"
+title: "BIOL1007A Webpage"
 author: "Ev Berger-Wolf"
 date: "2023-01-10"
 output: html_document
@@ -9,5 +9,5 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 1/9/23
+### 1/9/23
 [Assignment 1](Assignment1.html)
