@@ -2,14 +2,20 @@
 title: "Assignment 1"
 author: "Ev Berger-Wolf"
 date: "2023-01-10"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## This is a script. You can save code here to run again
+## Notes 1/9/23
+
+### This is a script. You can save code here to run again
 
 Quick way to run code: Command + Enter
 
@@ -29,23 +35,72 @@ a <- 2+2
 ```
 
 #### Terminal: Your shell, where you can speak directly to your computer
-
-Common shell command: ls --> Lists your directories
-
-setwd() - sets working directory
-
-getwd() - gets working directory
-
-Shortcut for help(): ?function or ??general_search
-
-*Always name your homepage index.Rmd
+- Common shell command: ls --> Lists your directories
+- setwd() - sets working directory
+- getwd() - gets working directory
+- Shortcut for help(): ?function or ??general_search
+- *Always name your homepage index.Rmd
 
 #### Terminal git commands to know
+- git status -> tells you how up to date you are with GitHub
+- git add -A -> adds untracked changes to the stage
+- git commit -am 'message' -> commits all changes on the stage with the message
+- git push -> Pushes changes to GitHub cloud
 
-git status -> tells you how up to date you are with GitHub
+***
 
-git add -A -> adds untracked changes to the stage
+## Notes 1/10/23
 
-git commit -am 'message' -> commits all changes on the stage with the message
+#### git and GitHub
+- Method of version control, which allows you to keep (& restore) past versions of files
+- Also allow programmers to collaborate
+- git: Keeps track of all the files; local version control
+- GitHub: Free remote website for public data/project storage
 
-git push -> Pushes changes to GitHub cloud
+#### Best formats for version control:
+- Plain text (.txt)
+- .R scripts
+- Markdown (.md/.Rmd)
+- html
+
+#### Not great formats for version control (esp. in GitHub):
+- PDFs
+- Videos/pictures
+- Word docs
+
+#### Markdown: text formatting language used in multiple languages
+- Type of markup language which allows you to format plain text
+- R has its own version (RMarkdown)
+
+#### GitHub repository:
+- We can 'clone' (download a copy) the repo onto our local computer
+- This clone can be edited locally, without changing the global version on the web
+- Working on a repository = making changes to files, such as:
+  - Adding a new file
+  - Altering existing files
+  - Deleting existing files
+- Commit (noun): Snapshot of the current file system/local repository
+  - You can return to previous commits and bring old files/changes back
+  - Use messages to yourself to know which version you're committing
+- Commit (verb): Saving and recording your changes locally
+- Branches: Cloning a certain commit
+  - Lets you try different things to eventually (maybe) merge the offshoot branch with the main branch
+- Push: Transferring changes from local repo to GitHub repo
+- Pull: Brings down GitHub repo to your local repo to sync them (helps with remote work and collaboration)
+
+#### R Project:
+- Organization system to divde your work into multiple contexts
+- Each project has its own working directory
+- Great workspace
+- Can be linked to GitHub to access history and source documents
+
+
+### Some formatting tricks:
+# Header 1
+## Header 2
+### Header 3
+This is plain text. You can also *italicize* and **bold** words.
+
+`## this is where I can put anything. It's called code fencing!`
+
+You can link things like [this!](file:///Users/ev/Downloads/jack-hamilton-EP_OHkgn1JI-unsplash.jpg)
