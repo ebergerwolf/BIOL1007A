@@ -8,12 +8,6 @@ output:
     highlight: github
 ---
 
-Use the RMarkdown cheat sheet and create an .Rmd with the following:
-
-A numbered list
-A link to a website
-Plain text within fencing
-
 
 ![:)](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/frog.jpg){width=25%}
 
