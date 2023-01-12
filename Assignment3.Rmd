@@ -59,7 +59,8 @@ rep(x=1:5,times=c(1:5))
 rep(x=5:1,times=c(1:5))
 ```
 
-#### Problem 3: Create a vector using the code: `queue <- c("sheep", "fox", "owl", "ant")`, where queue represents the animals that are lined up to enter an exclusive club, with the sheep at the front of the line. Using R expressions, update `queue` as:
+#### Problem 3: 
+Create a vector using the code: `queue <- c("sheep", "fox", "owl", "ant")`, where queue represents the animals that are lined up to enter an exclusive club, with the sheep at the front of the line. Using R expressions, update `queue` as:
 
 ```{r}
 queue <- c("sheep","fox", "owl", "ant")
