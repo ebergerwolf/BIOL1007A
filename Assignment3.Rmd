@@ -1,0 +1,109 @@
+---
+title: "Assignment 3"
+author: "Ev Berger-Wolf"
+date: "2023-01-12"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+#### Problem 1:
+Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the variable z and print the value stored in each z.
+
+```{r}
+x <- 1.1
+a <- 2.2
+b <- 3.3
+```
+
+##### A: $x^{a^b}$
+
+```{r}
+z <- x^(a^b)
+print(z)
+```
+
+##### B: $(x^a)^b$
+
+```{r}
+z <- (x^a)^b
+print(z)
+```
+
+##### C: $3x^3 + 2x^2 + 1$
+
+```{r}
+z <- 3*(x^3) + 2*(x^2) + 1
+print(z)
+```
+
+#### Problem 2:
+Using the `rep` and `seq` functions, create the following vectors:
+
+##### A: $(1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)$
+
+```{r}
+c(seq(from=1,to=8),seq(from=7,to=1))
+```
+
+##### B: $(1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)$
+
+```{r}
+rep(x=1:5,times=c(1:5))
+```
+
+##### C: $(5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)$
+
+```{r}
+rep(x=5:1,times=c(1:5))
+```
+
+#### Problem 3: Create a vector using the code: `queue <- c("sheep", "fox", "owl", "ant")`, where queue represents the animals that are lined up to enter an exclusive club, with the sheep at the front of the line. Using R expressions, update `queue` as:
+
+```{r}
+queue <- c("sheep","fox", "owl", "ant")
+print(queue)
+```
+
+##### A: the serpent arrives and gets in the back of the line
+
+```{r}
+queue <- c(queue,"serpent")
+print(queue)
+```
+
+##### B: the sheep enters the club (so disappears from the line)
+
+```{r}
+queue <- queue[-which(queue=="sheep")]
+print(queue)
+```
+
+##### C: the donkey arrives and talks his way to the front of the line
+
+```{r}
+queue <- c("donkey",queue)
+print(queue)
+```
+
+##### D: the serpent gets impatient and leaves
+
+```{r}
+queue <- queue[-which(queue=="serpent")]
+print(queue)
+```
+
+##### E: the aphid arrives and the ant invites him to cut in line (hint: check out the append function)
+
+```{r}
+queue <- append(queue,"aphid",which(queue=="ant")-1)
+print(queue)
+```
+
+##### F: Finally, determine the position of the aphid in the line (hint: use the which function)
+
+```{r}
+which(queue=="aphid")
+```
+
