@@ -1,0 +1,116 @@
+---
+title: "Weekly Assignment 1"
+author: "Ev Berger-Wolf"
+date: "2023-01-16"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+# A Guide to GitHub Webpages
+
+### Section 1: Installing git
+
+Mac users: 
+
+1. Update your software to the latest version of OSX
+2. Make sure Xcode is installed. You can install the latest version of Xcode [here](https://developer.apple.com/download/all/). If you can, install "Command Line Tools for Xcode 14.2 Release Candidate"
+    - ![](/Users/ev/Desktop/Screen Shot 2023-01-16 at 1.09.50 PM.png){width=30%}
+    - If this doesn't work, you can download the Xcode application off of the Apple Store. Make sure you block off some time for this, since Xcode takes a while to download.
+3. Install homebrew by copying and pasting the following command into Terminal: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+    - To find the Terminal application, use command-space to open the search bar and searching "Terminal".
+4. Once homebrew is installed, copy and paste the following command into Terminal:
+  `$ brew install git`
+    - If this isn't working, check out [this video](https://www.youtube.com/watch?v=SOjSNB7F2m4).
+
+Windows users:
+
+1. If you haven't already, install [winget](https://learn.microsoft.com/en-us/windows/package-manager/winget/).
+2. Copy and paste the following command into Powershell or the command prompt:
+  `winget install --id Git.Git -e --source winget`
+  
+**You can check whether git installation worked by opening RStudio and creating a new project. There should be an option to choose "Create a git repository"**
+![](/Users/ev/Desktop/Screen Shot 2023-01-16 at 1.37.29 PM.png){width=50%}
+
+
+### Section 2: Linking git and GitHub
+
+Generate a Personal Access Token (PAT):
+
+1. If you haven't already, create an account on [GitHub](https://github.com/).
+2. Click on your account icon in the upper right-hand corner and go to Settings.
+3. Scroll all the way down to Developer Settings on the left-hand side and select it.
+4. Select Personal access tokens, then Tokens (classic).
+5. Select Generate new token and then select the classic option.
+6. Choose a name appropriate to your project as the token name.
+7. Choose whichever expiration date is most suitable for your project.
+8. Select the repo check box and make sure all of the boxes in that subsection are selected.
+9. Click Generate token.
+10. **Copy the token it generates and save it somewhere you can access it again. This is the only time you will have access to the token.**
+
+Link RStudio to GitHub:
+
+1. Install the credentials package by copying and pasting the following code into Console in RStudio: `install.packages("credentials")`
+2. Run the following code in RStudio's Terminal tab:
+```{r, eval=FALSE}
+git config --global user.email "put github email here"
+git config --global user.name "put your name here"
+credentials::set_github_pat("put PAT here")
+```
+
+  - For any password that R or your computer asks of you, type your PAT.
+    
+### Section 3: Setting up a repository
+
+Making a GitHub Repository:
+
+1. Go to the GitHub homepage and on the left-hand side there should be a button to create your first or a new repository. Click it.
+2. Name your repository according to your project.
+3. Choose the Public option.
+4. Check the box to add a README file.
+5. Choose the MIT license, then click Create repository.
+
+Linking the repository to GitHub:
+
+1. Go to the repository. In the upper right-hand corner, click on the Code button.
+2. Copy the link in the HTTPS box.
+    - ![](/Users/ev/Desktop/Screen Shot 2023-01-16 at 4.06.29 PM.png){width=30%}
+3. Go back to RStudio and in the upper right-hand corner, click the drop-down to create a new project.
+4. Click the option called Version Control, then select Git.
+5. Paste the link you just copied into the URL box, then copy the **exact** name of the repository into the box for the name of the directory.
+    - ![](/Users/ev/Desktop/Screen Shot 2023-01-16 at 4.10.38 PM.png){width=30%}
+
+Initial commits:
+
+1. Go to the Terminal tab in RStudio and copy and paste the following commands:
+```{r,eval=FALSE}
+git add -A
+git commit -am "short descriptive message here"
+git push
+```
+2. Switch back to your GitHub repository on your web browser and reload the page. Your intial commits should appear.
+3. You can type `git status` in the Terminal tab at any point to check the status of the synchrony between your local project and the GitHub workspace.
+
+### Section 4: Setting up your first webpage
+
+Enable pages in GitHub:
+
+1. Go to your repository on GitHub and click the Settings tab.
+2. On the left-hand side, scroll down and click the Pages icon.
+3. For Source, choose Deploy from a branch, and choose main as the branch. Click Save.
+
+Creating a homepage:
+
+1. In RStudio, go to the upper left-hand side to create a new file. Choose an R Markdown file.
+2. Name the file whatever you want the header to be, and make sure HTML is chosen for the format.
+3. Click Knit, and a pop-up should show up to save your file. **Save your file as index.Rmd so that it will be your homepage.**
+4. Create your homepage however you'd like and once you feel good, commit and push your changes as described above.
+5. Access your new homepage at YourGithubUsername.github.io/YourRepositoryName/
+6. Link new pages to your homepage using R Markdown files!
+
+**All done!!**
+
+![](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/happylizard.jpeg){width=25%}
+
+    
