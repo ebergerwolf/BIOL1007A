@@ -15,4 +15,4 @@ output:
 [Assignment 3](Assignment3.html)
 
 ## Weekly Assignments
-[Weekly Assignment 1](WeeklyAssignment1.hmtl)
+[Weekly Assignment 1](WeeklyAssignment1.html)
