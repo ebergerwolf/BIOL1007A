@@ -194,16 +194,19 @@ following vectors:</p>
 <h5>A: <span class="math inline">\((1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)\)</span></h5>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">8</span>),<span class="fu">seq</span>(<span class="at">from=</span><span class="dv">7</span>,<span class="at">to=</span><span class="dv">1</span>))</span></code></pre></div>
 <pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or c(1:8,7:1)</span></span></code></pre></div>
 </div>
 <div id="b-122333444455555" class="section level5">
 <h5>B: <span class="math inline">\((1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)\)</span></h5>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">times=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="at">times=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>))</span></code></pre></div>
 <pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or rep(1:5,1:5)</span></span></code></pre></div>
 </div>
 <div id="c-544333222211111" class="section level5">
 <h5>C: <span class="math inline">\((5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)\)</span></h5>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x=</span><span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>,<span class="at">times=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x=</span><span class="dv">5</span><span class="sc">:</span><span class="dv">1</span>,<span class="at">times=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>))</span></code></pre></div>
 <pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or rep(5:1,1:5)</span></span></code></pre></div>
 </div>
 </div>
 <div id="problem-3" class="section level4">
@@ -213,45 +216,47 @@ following vectors:</p>
 represents the animals that are lined up to enter an exclusive club,
 with the sheep at the front of the line. Using R expressions, update
 <code>queue</code> as:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;fox&quot;</span>, <span class="st">&quot;owl&quot;</span>, <span class="st">&quot;ant&quot;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;sheep&quot;</span>,<span class="st">&quot;fox&quot;</span>, <span class="st">&quot;owl&quot;</span>, <span class="st">&quot;ant&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
 <div id="a-the-serpent-arrives-and-gets-in-the-back-of-the-line" class="section level5">
 <h5>A: the serpent arrives and gets in the back of the line</h5>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(queue,<span class="st">&quot;serpent&quot;</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(queue,<span class="st">&quot;serpent&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or queue[length(queue)+1] = &quot;serpent&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 </div>
 <div id="b-the-sheep-enters-the-club-so-disappears-from-the-line" class="section level5">
 <h5>B: the sheep enters the club (so disappears from the line)</h5>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> queue[<span class="sc">-</span><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;sheep&quot;</span>)]</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> queue[<span class="sc">-</span><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;sheep&quot;</span>)]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 </div>
 <div id="c-the-donkey-arrives-and-talks-his-way-to-the-front-of-the-line" class="section level5">
 <h5>C: the donkey arrives and talks his way to the front of the
 line</h5>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;donkey&quot;</span>,queue)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;donkey&quot;</span>,queue)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
 </div>
 <div id="d-the-serpent-gets-impatient-and-leaves" class="section level5">
 <h5>D: the serpent gets impatient and leaves</h5>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> queue[<span class="sc">-</span><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;serpent&quot;</span>)]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> queue[<span class="sc">-</span><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;serpent&quot;</span>)]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or queue &lt;- queue[queue != &quot;serpent&quot;]</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
 </div>
 <div id="e-the-aphid-arrives-and-the-ant-invites-him-to-cut-in-line-hint-check-out-the-append-function" class="section level5">
 <h5>E: the aphid arrives and the ant invites him to cut in line (hint:
 check out the append function)</h5>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">append</span>(queue,<span class="st">&quot;aphid&quot;</span>,<span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;ant&quot;</span>)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>queue <span class="ot">&lt;-</span> <span class="fu">append</span>(queue,<span class="st">&quot;aphid&quot;</span>,<span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;ant&quot;</span>)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(queue)</span></code></pre></div>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
 </div>
 <div id="f-finally-determine-the-position-of-the-aphid-in-the-line-hint-use-the-which-function" class="section level5">
 <h5>F: Finally, determine the position of the aphid in the line (hint:
 use the which function)</h5>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;aphid&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(queue<span class="sc">==</span><span class="st">&quot;aphid&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </div>
 </div>
