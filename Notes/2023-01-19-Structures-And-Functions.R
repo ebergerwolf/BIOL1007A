@@ -64,3 +64,31 @@ head(orderedIris)
 
 
 
+
+
+#### Functions in R ####
+
+## Everything in R is a function
+
+sum(3,2) #sum() is a function
+3+2 # + is a function too! (operators are functions)
+sd #run just the function name to see the code for the function
+
+## User-Defined Functions:
+# We can create our very own functions
+# Anatomy of a function:
+# 
+# functionName <- function(argX = defaultX, argY = defaultY) {
+#   ## Curly bracket starts the body of the function
+#   
+#   ## Lines of code and notes
+#   ## Can also create local variables (variables that are only defined in the function)
+#   # i.e. x <- 1
+#   
+#   ## return(z) #what the function will return/define (different from print)
+# }
+
+
+
+
+

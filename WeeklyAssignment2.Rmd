@@ -1,0 +1,58 @@
+---
+title: "Weekly Assignment 2"
+author: "Ev Berger-Wolf"
+date: "2023-01-19"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
+  - The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations.
+  - The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2.
+  - You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
+
+```{r}
+
+
+dFrameMaker <- function(means=c(10,45),stdevs=c(1.5,2)) {
+  
+  ## Create a data frame of simulated data
+  # arguments: means and st deviations for control and treatment. Default is means = 10 & 45; sd = 1.5 & 2
+  # returns: data frame created 
+  
+  d_frame <- data.frame(matrix(nrow = 50, ncol = 2)) #create data frame with 50 rows and 2 columns 
+  colnames(d_frame) <- c("Type","Value") #name the columns "Type" and "Value"
+  
+  d_frame["Type"] <- rep(c("Control","Treatment"),each=25) #Type: 25 Control, 25 Treatment
+  d_frame["Value"] <- c(rnorm(n=25,mean=means[1],sd=stdevs[1]),
+                        rnorm(25,mean=means[2],sd=stdevs[2])) #Value: 2 types of normal distributions
+  
+  return(d_frame) # returns the data frame
+}
+
+```
+
+
+2. Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
+
+```{r}
+
+my_frame <- dFrameMaker()
+head(my_frame)
+
+```
+
+
+3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. Write a line of code that displays a summary of your ANOVA.
+
+```{r}
+aov(Value ~ Type, data = my_frame)
+```
+
+
+
+
+4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
+
