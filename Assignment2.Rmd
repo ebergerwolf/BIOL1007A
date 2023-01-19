@@ -30,10 +30,10 @@ You can *italicize* words,
 And you can **bold** them.
 
 #### My favorite books:
-- A Secret History
+- The Secret History
 - Namesake
 - The Phantom Tollbooth
-- A Hitchhiker's Guide to the Galaxy
+- The Hitchhiker's Guide to the Galaxy
 
 #### Top 3 kitchen utensils
 1. Pastry cutter
