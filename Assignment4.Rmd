@@ -8,7 +8,6 @@ output:
     highlight: github
 ---
 
-#### Problem 1:
 Assign to the variable n_dims a single random integer between 3 and 10.
 
 ```{r}
@@ -67,22 +66,4 @@ mean(sq_mat[n_dims,])
 ```
 
 Set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value.
-
-#### Problem 2:
-
-Create a list with the following named elements:
-
-  - my_matrix, which is a 4 x 4 matrix filled with random uniform values
-  - my_logical, which is a 100-element vector of TRUE or FALSE values. You can do this efficiently by setting up a vector of random values and then applying an inequality to it.
-  - my_letters, which is a 26-element vector of all the lower-case letters in random order.
-
-```{r}
-my_matrix <- matrix(runif(16),ncol=4,nrow=4)
-rand_dist <- runif(100)
-my_logical <- rand_dist>0.5
-my_letters <- letters
-
-my_list <- list(my_matrix, my_logical, my_letters) 
-```
-
 

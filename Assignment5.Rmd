@@ -1,0 +1,27 @@
+---
+title: "Assignment 5"
+author: "Ev Berger-Wolf"
+date: "2023-01-19"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+#### Problem 1:
+
+Create a list with the following named elements:
+
+  - my_matrix, which is a 4 x 4 matrix filled with random uniform values
+  - my_logical, which is a 100-element vector of TRUE or FALSE values. You can do this efficiently by setting up a vector of random values and then applying an inequality to it.
+  - my_letters, which is a 26-element vector of all the lower-case letters in random order.
+
+```{r}
+my_matrix <- matrix(runif(16),ncol=4,nrow=4)
+rand_dist <- runif(100)
+my_logical <- rand_dist>0.5
+my_letters <- letters
+
+my_list <- list(my_matrix, my_logical, my_letters) 
+```
+
