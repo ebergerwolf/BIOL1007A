@@ -88,7 +88,87 @@ sd #run just the function name to see the code for the function
 #   ## return(z) #what the function will return/define (different from print)
 # }
 
+# Let's make our own function!
+myFunc <- function(a=3, b=4) {
+  ## Function that sums 2 values
+  # Arguments:
+  #   a: default value of 3
+  #   b: default value of 4
+  # Returns: sum of a and b
+  
+  z <- a + b
+  return(z)
+}
+myFunc() #runs defaults
+myFunc(a=100,b=3.4) #defines our own values
+print(z) #z wasn't globally defined so it doesn't exist
+z <- myFunc() #now we've defined z
+print(z) #now it works :)
 
+# Let's make a bad function :(
+myFuncBad <- function(a=3) {
+  ## Function that sums 2 values
+  # Arguments:
+  #   a: default value of 3
+  # Returns: sum of a and b
+  
+  z <- a + b # this will give an error
+  return(z)
+}
+myFuncBad() #returns error (b wasn't defined)
+b <- 50 #if we define b globally, the function will work but that's BAD coding practice
+myFuncBad()
 
+## We can have multiple return statements
+
+##########################################
+# FUNCTION: HardyWeinberg
+# input: a dominant allele frequency p (0,1)
+# output: p and the frequencies of 3 genotypes: AA, AB, BB
+#----------------------------------------
+HardyWeinberg <- function(p = runif(1)){
+  
+  if(p > 1.0 | p < 0.0){
+    return("Function failure: p must be between 0 and 1")
+  }
+  
+  q <- 1-p #recessive allele
+  fAA <- p^2 #frequency of AA
+  fAB <- 2*p*q #frequency of AB
+  fBB <- q^2 #frequency of BB
+  vecOut <- signif(c(p=p, A=fAA, AB = fAB, BB = fAB), digits = 3) #vector with all values rounded to 3 significant digits
+  
+  return(vecOut)
+}
+##########################################
+
+HardyWeinberg() #runs the default
+freqs <- HardyWeinberg()
+HardyWeinberg(p=3) #returns failure message
+
+## Create a complex default value
+
+##########################################
+# FUNCTION: fitLinear2
+# fits a simple regression line
+# inputs: list (p) of predictor (x) and response (y)
+# outputs: slope and p-value
+#-----------------------------------------
+fitLinear2 <- function(p=NULL){
+  #if no arguments, create a list of random values
+  if(is.null(p)){
+    p <- list(x=runif(20),y=runif(20))
+    } 
+  
+  myMod <- lm(p$x~p$y) #fit a linear model to output y based on input x
+  myOut <- c(slope = summary(myMod)$coefficients[2,1],
+             pValue = summary(myMod)$coefficients[2,4]) #create a vector with the p-value and slope of the model
+  plot(x=p$x,y=p$y) #plots a quick scatter plot
+  return(myOut) #returns the slope and p-value
+}
+
+fitLinear2() #runs default random uniform values
+myPars <- list(x=1:10,y=runif(10))
+fitLinear2(myPars)
 
 

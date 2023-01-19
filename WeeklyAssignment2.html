@@ -174,34 +174,35 @@ distributed with a mean of 45 and standard deviation of 2.</li>
 <li>You can do this all as a single line of code in the function or by
 breaking it up into multiple code blocks.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dFrameMaker <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">stdevs=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>)) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Create a data frame of simulated data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arguments: means and st deviations for control and treatment. Default is means = 10 &amp; 45; sd = 1.5 &amp; 2</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># returns: data frame created </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  d_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">50</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="co">#create data frame with 50 rows and 2 columns </span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(d_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>,<span class="st">&quot;Value&quot;</span>) <span class="co">#name the columns &quot;Type&quot; and &quot;Value&quot;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Type&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>,<span class="st">&quot;Treatment&quot;</span>),<span class="at">each=</span><span class="dv">25</span>) <span class="co">#Type: 25 Control, 25 Treatment</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Value&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>,<span class="at">mean=</span>means[<span class="dv">1</span>],<span class="at">sd=</span>stdevs[<span class="dv">1</span>]),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="at">mean=</span>means[<span class="dv">2</span>],<span class="at">sd=</span>stdevs[<span class="dv">2</span>])) <span class="co">#Value: 2 types of normal distributions</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d_frame) <span class="co"># returns the data frame</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FUNCTION: dFrameMaker</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame of simulated data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs: vector of means (means) and a vector of standard deviations (stdevs) for control and treatment.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   Default is means = [10, 45]; sd = [1.5, 2]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># returns: the data frame created </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>dFrameMaker <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">stdevs=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>)) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  d_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">50</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="co">#create data frame with 50 rows and 2 columns</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(d_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>,<span class="st">&quot;Value&quot;</span>) <span class="co">#name the columns &quot;Type&quot; and &quot;Value&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Type&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>,<span class="st">&quot;Treatment&quot;</span>),<span class="at">each=</span><span class="dv">25</span>) <span class="co">#Type: 25 Control, 25 Treatment</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Value&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>,<span class="at">mean=</span>means[<span class="dv">1</span>],<span class="at">sd=</span>stdevs[<span class="dv">1</span>]),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">rnorm</span>(<span class="dv">25</span>,<span class="at">mean=</span>means[<span class="dv">2</span>],<span class="at">sd=</span>stdevs[<span class="dv">2</span>])) <span class="co">#Value: 2 types of normal distributions</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d_frame) <span class="co"># returns the data frame</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Save your new function’s output as a variable, and use a function to
 view the first 6 rows of the data frame.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_frame <span class="ot">&lt;-</span> <span class="fu">dFrameMaker</span>()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_frame)</span></code></pre></div>
-<pre><code>##      Type     Value
-## 1 Control 11.447421
-## 2 Control 11.768916
-## 3 Control 13.607120
-## 4 Control 10.165140
-## 5 Control  9.542822
-## 6 Control  8.574721</code></pre>
+<pre><code>##      Type    Value
+## 1 Control 10.29961
+## 2 Control 12.47723
+## 3 Control 10.16739
+## 4 Control 11.83077
+## 5 Control 11.09470
+## 6 Control 11.74193</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Let’s say you would like to know whether there is a statistically
 significant difference in “Value” (response variable y) depending on
@@ -209,23 +210,51 @@ significant difference in “Value” (response variable y) depending on
 how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data =</span> my_frame)</span></code></pre></div>
-<pre><code>## Call:
-##    aov(formula = Value ~ Type, data = my_frame)
-## 
-## Terms:
-##                      Type Residuals
-## Sum of Squares  14695.886    77.582
-## Deg. of Freedom         1        48
-## 
-## Residual standard error: 1.271337
-## Estimated effects may be unbalanced</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data =</span> my_frame)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_anova)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Type         1  15155   15155    5403 &lt;2e-16 ***
+## Residuals   48    135       3                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Finally create a function that uses a data frame as its input and
 returns only the p-value of an ANOVA summary table (feel free to use
 Google/Stack Overflow). Write your code in such a way that you can use
 any simulated data set with two columns as the function’s argument.</li>
 </ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FUNCTION: anovaTest2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the p-value of an ANOVA for any data frame with 2 columns</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inputs: Some data frame (d_frame) with 2 columns</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   The 1st column should be the explanatory value and the 2nd column should be the response variable</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># outputs: p-value based on the ANOVA for the 2 variables</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>anovaTest2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d_frame=</span><span class="cn">NULL</span>){</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Default data frame randomly generated from data frame maker</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(d_frame)){</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    d_frame <span class="ot">&lt;-</span> <span class="fu">dFrameMaker</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if the data frame doesn&#39;t have 2 columns, return an error message</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(d_frame)<span class="sc">!=</span><span class="dv">2</span>){</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">&quot;Function error: The data frame must have 2 columns.&quot;</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(d_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Explanatory&quot;</span>,<span class="st">&quot;Response&quot;</span>) <span class="co">#rename column names</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  my_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(Response <span class="sc">~</span> Explanatory, <span class="at">data =</span> d_frame) <span class="co">#run anova</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  anova_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(my_anova) <span class="co">#extract anova summary</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  pOut <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">pVal=</span>anova_tbl[[<span class="dv">1</span>]][<span class="st">&quot;Explanatory&quot;</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]) <span class="co">#extract p-value</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pOut) <span class="co">#output p-value</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="fu">anovaTest2</span>() <span class="co">#run default</span></span></code></pre></div>
+<pre><code>##         pVal 
+## 7.303175e-51</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>new_frame <span class="ot">&lt;-</span> <span class="fu">dFrameMaker</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">25</span>),<span class="at">stdevs=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">7</span>)) <span class="co">#create new data frame</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anovaTest2</span>(new_frame) <span class="co">#run ANOVA on the new frame</span></span></code></pre></div>
+<pre><code>##        pVal 
+## 0.004413595</code></pre>
     </section>
   </div>
 </div>

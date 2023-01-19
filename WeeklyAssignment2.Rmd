@@ -14,15 +14,14 @@ output:
   - You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
 
 ```{r}
-
+# FUNCTION: dFrameMaker
+# Create a data frame of simulated data
+# inputs: vector of means (means) and a vector of standard deviations (stdevs) for control and treatment.
+#   Default is means = [10, 45]; sd = [1.5, 2]
+# returns: the data frame created 
 
 dFrameMaker <- function(means=c(10,45),stdevs=c(1.5,2)) {
-  
-  ## Create a data frame of simulated data
-  # arguments: means and st deviations for control and treatment. Default is means = 10 & 45; sd = 1.5 & 2
-  # returns: data frame created 
-  
-  d_frame <- data.frame(matrix(nrow = 50, ncol = 2)) #create data frame with 50 rows and 2 columns 
+  d_frame <- data.frame(matrix(nrow = 50, ncol = 2)) #create data frame with 50 rows and 2 columns
   colnames(d_frame) <- c("Type","Value") #name the columns "Type" and "Value"
   
   d_frame["Type"] <- rep(c("Control","Treatment"),each=25) #Type: 25 Control, 25 Treatment
@@ -48,11 +47,41 @@ head(my_frame)
 3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. Write a line of code that displays a summary of your ANOVA.
 
 ```{r}
-aov(Value ~ Type, data = my_frame)
+my_anova <- aov(Value ~ Type, data = my_frame)
+summary(my_anova)
 ```
 
-
-
-
 4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
+
+```{r}
+# FUNCTION: anovaTest2
+# Find the p-value of an ANOVA for any data frame with 2 columns
+# inputs: Some data frame (d_frame) with 2 columns
+#   The 1st column should be the explanatory value and the 2nd column should be the response variable
+# outputs: p-value based on the ANOVA for the 2 variables
+
+anovaTest2 <- function(d_frame=NULL){
+  # Default data frame randomly generated from data frame maker
+  if (is.null(d_frame)){
+    d_frame <- dFrameMaker()
+  }
+  
+  # if the data frame doesn't have 2 columns, return an error message
+  if (length(d_frame)!=2){
+    return("Function error: The data frame must have 2 columns.")
+  }
+  
+  colnames(d_frame) <- c("Explanatory","Response") #rename column names
+  my_anova <- aov(Response ~ Explanatory, data = d_frame) #run anova
+  anova_tbl <- summary(my_anova) #extract anova summary
+  pOut <- c(pVal=anova_tbl[[1]]["Explanatory","Pr(>F)"]) #extract p-value
+  
+  return(pOut) #output p-value
+}
+
+anovaTest2() #run default
+new_frame <- dFrameMaker(means=c(20,25),stdevs=c(5,7)) #create new data frame
+anovaTest2(new_frame) #run ANOVA on the new frame
+
+```
 
