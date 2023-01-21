@@ -1,11 +1,18 @@
 ---
-title: "BIOL1007A Webpage"
+title: |
+  BIOL1007A Webpage  
+  
+  ![](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/computerCat.jpeg){width=3in}  
 author: "Ev Berger-Wolf"
 output: 
   prettydoc::html_pretty:
     theme: architect
     highlight: github
 ---
+
+Hi there! Welcome to my homepage for BIOL1007A: Reproducible Biology in R. Here you will find the links to daily and weekly assignments for the class. Somewhere on this page is an additional hidden link to a pretty cool website, so let me know if you find it! 
+
+I'm Ev (she/they) and I'm a senior neuroscience major at Middlebury College, and I'm from Chicago. I love writing poetry, dancing, climbing, and sudoku. Let me know if you have any good book or music recommendations, I'm always looking for some! :)
 
 ## Daily Assignments
 [Assignment 1](Assignment1.html)
@@ -22,3 +29,5 @@ output:
 [Weekly Assignment 1](WeeklyAssignment1.html)
 
 [Weekly Assignment 2](WeeklyAssignment2.html)
+
+<abbr title="you found it!"><a href="https://zoomquilt.org/" target="_blank"><font color="white">.</a></font></abbr>
