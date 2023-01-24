@@ -80,6 +80,9 @@ Create a box plot figure that shows the variation in heights among Star Wars spe
   - Change your axes labels so that species is capitalized and height is capitalized and shows units (cm). 
   - Use the theme_minimal option. 
   - Then look into the annotate or geom_text functions and add the text “p=1.2E-0.5” to the top right corner.
+  - Overlay the data points onto the box plots. See if you can change the color of the points, depending on the gender or sex variables.
+
+
 
 ```{r}
 # boxplot based on species and height
@@ -89,9 +92,14 @@ newton <- ggplot(starwars_clean, aes(x=species, y=height, fill=species)) +
   ylab("Height (cm)") +
   theme_minimal() + 
   geom_text(aes(x=tail(spec_names, n=1),y=max(height),label="p=1.2E-0.5"), size=3) +
-  labs(title="Starwars data: Heights (cm) by Species")
+  labs(title="Starwars data: Heights (cm) by Species") + 
+  geom_point(aes(x=species, y=height, color=gender)) +
+  scale_color_manual(values=c("green","red")) +
+  guides(fill="none") 
 newton #like fig(ure) newton!
 ```
+
+
 
 #### Problem 4:
 
