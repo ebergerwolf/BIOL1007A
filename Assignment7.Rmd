@@ -1,0 +1,121 @@
+---
+title: "Assignment 7"
+author: "Ev Berger-Wolf"
+date: "2023-01-24"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+```{r}
+library(tidyverse) #includes dplyr & ggplot
+library(ggthemes)
+library(patchwork)
+library(viridis)
+```
+
+
+#### Problem 1:
+Using the built-in starwars data set in the dplyr package, create a new tibble with the following modifications:
+
+  - It only includes the species that have more than 1 individual represented in the data set.
+  - It only includes the columns that are not of type list
+
+```{r}
+# grab only species with more than one observation
+data(starwars)
+spec_counts <- starwars %>%
+  group_by(species) %>%
+  summarize(specCounts = n())
+spec_names <- unlist(na.omit(spec_counts[spec_counts$specCounts > 1,"species"]))
+spec_names
+```
+
+```{r}
+# grab all column names that are not lists
+col_vec <- c()
+x<-1
+for(i in 1:ncol(starwars)){
+  if(typeof(starwars[[i]]) != "list"){
+    col_vec[x] <- colnames(starwars)[i]
+    x <- x+1
+  }
+}
+col_vec
+```
+
+```{r}
+# pipe in the parameters
+starwars2 <- starwars %>%
+  filter(species %in% spec_names) %>%
+  select(all_of(col_vec)) %>%
+  glimpse()
+```
+
+#### Problem 2:
+Clean your data set: only include observations/rows that do not have an NA in the height column. Then, use dplyr to print a summary table showing the mean, median, and standard deviation of height for each species.
+
+```{r}
+# remove all NAs in height variable
+starwars_clean <- starwars2 %>%
+  filter(complete.cases(height)) %>%
+  glimpse()
+```
+
+```{r}
+# summarize mean, median, and standard deviation
+summary_tbl <- starwars_clean %>%
+  group_by(species) %>%
+  summarize(meanHeight = mean(height), medianHeight = median(height), stdevHeight = sd(height)) %>%
+  print()
+```
+
+#### Problem 3:
+
+Create a box plot figure that shows the variation in heights among Star Wars species. 
+
+  - Do the values in your summary table line up with the plot?
+  - Code so that each box plot (Species) is be filled with a different color. 
+  - Change your axes labels so that species is capitalized and height is capitalized and shows units (cm). 
+  - Use the theme_minimal option. 
+  - Then look into the annotate or geom_text functions and add the text “p=1.2E-0.5” to the top right corner.
+
+```{r}
+# boxplot based on species and height
+newton <- ggplot(starwars_clean, aes(x=species, y=height, fill=species)) +
+  geom_boxplot() +
+  xlab("Species") +
+  ylab("Height (cm)") +
+  theme_minimal() + 
+  geom_text(aes(x=tail(spec_names, n=1),y=max(height),label="p=1.2E-0.5"), size=3) +
+  labs(title="Starwars data: Heights (cm) by Species")
+newton #like fig(ure) newton!
+```
+
+#### Problem 4:
+
+Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
+
+```{r}
+data(iris) #load in iris data
+colormappy <- c("#D81B60","#2196F3","#66BB6A") #set colors for each species
+newton2 <- ggplot(iris, aes(x=Sepal.Length,y=Petal.Length,fill=Species,color=Species)) +
+  geom_point(shape=sample(1:25,1)) + #random shape 
+  scale_fill_manual(values = colormappy) + #fill and outline should be the same
+  scale_color_manual(values = colormappy) +
+  theme_bw() +
+  xlab("Sepal Length (cm)") + ylab("Petal Length (cm)") +
+  labs(title="Iris data: Petal vs. Sepal Length (cm)")
+newton2
+```
+
+#### Problem 5:
+
+Finally, create a multi-panel figure with the graphs you created.
+
+```{r}
+newton/newton2 + plot_layout(heights = c(2, 1)) #stacked plots, 1st plot is larger than the 2nd
+```
+
+

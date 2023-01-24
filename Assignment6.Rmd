@@ -7,7 +7,7 @@ output:
     theme: architect
     highlight: github
 ---
-```{r, include=FALSE}
+```{r}
 library(tidyverse)
 ```
 
