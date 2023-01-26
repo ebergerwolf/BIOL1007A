@@ -29,6 +29,8 @@ I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from 
 
 [Assignment 7](Assignment7.html)
 
+[Assignment 8](Assignment8.html)
+
 ## Weekly Assignments
 [Weekly Assignment 1](WeeklyAssignment1.html)
 
@@ -44,5 +46,7 @@ I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from 
 <a href="Notes/2023-01-23-The-Tidyverse.R" download>1/23/23: The tidyverse</a>
 
 <a href="Notes/2023-01-24-ggplot2.R" download>1/24/23: Plotting with ggplot2</a>
+
+<a href="Notes/2023-01-25-Loading-Data.R" download>1/26/23: Loading data</a>
 
 <abbr title="you found it!"><a href="https://zoomquilt.org/" target="_blank"><font color="white">.</a></font></abbr>

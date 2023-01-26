@@ -1,0 +1,40 @@
+---
+title: "Weekly Assignment 3"
+author: "Ev Berger-Wolf"
+date: "2023-01-26"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+### Recreating a figure
+
+Go to Dryad to choose a published paper and data set and reconstruct your own figure. Code a ggplot graph that looks as close to the published figure as you can.
+
+Original Figure:
+![](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/beeDataFigure.jpeg){width=25%}
+My attempt:
+
+```{r}
+# load in libraries
+library(tidyverse) #includes dplyr & ggplot
+library(ggthemes)
+library(patchwork)
+library(viridis)
+```
+
+```{r}
+# load in data
+learning_phase <- read.table(file="Data/Learning_phase.csv", header=T, sep=",")
+testing_phase <- read.table(file="Data/Testing_phase.csv", header=T, sep=",")
+
+#reshaping data
+
+```
+
+```{r}
+# making the first plot
+```
+
+
