@@ -27,8 +27,8 @@ Using the built-in starwars data set in the dplyr package, create a new tibble w
 data(starwars)
 spec_counts <- starwars %>%
   group_by(species) %>%
-  summarize(specCounts = n())
-spec_names <- unlist(na.omit(spec_counts[spec_counts$specCounts > 1,"species"]))
+  summarize(specCounts = n()) #observation counts for each species
+spec_names <- unlist(na.omit(spec_counts[spec_counts$specCounts > 1,"species"])) #only species w/ > 1 observation
 spec_names
 ```
 
@@ -36,9 +36,9 @@ spec_names
 # grab all column names that are not lists
 col_vec <- c()
 x<-1
-for(i in 1:ncol(starwars)){
-  if(typeof(starwars[[i]]) != "list"){
-    col_vec[x] <- colnames(starwars)[i]
+for(i in 1:ncol(starwars)){ #for each column
+  if(typeof(starwars[[i]]) != "list"){ #if the column data type is NOT list
+    col_vec[x] <- colnames(starwars)[i] #add the column name to the vector
     x <- x+1
   }
 }
@@ -48,8 +48,8 @@ col_vec
 ```{r}
 # pipe in the parameters
 starwars2 <- starwars %>%
-  filter(species %in% spec_names) %>%
-  select(all_of(col_vec)) %>%
+  filter(species %in% spec_names) %>% #all species w/ > 1 observation
+  select(all_of(col_vec)) %>% #all columns that are not lists
   glimpse()
 ```
 
@@ -86,16 +86,16 @@ Create a box plot figure that shows the variation in heights among Star Wars spe
 
 ```{r}
 # boxplot based on species and height
-newton <- ggplot(starwars_clean, aes(x=species, y=height, fill=species)) +
+newton <- ggplot(starwars_clean, aes(x=species, y=height, fill=species)) + #xdata, ydata, color data 
   geom_boxplot() +
   xlab("Species") +
   ylab("Height (cm)") +
   theme_minimal() + 
-  geom_text(aes(x=tail(spec_names, n=1),y=max(height),label="p=1.2E-0.5"), size=3) +
+  geom_text(aes(x=tail(spec_names, n=1),y=max(height),label="p=1.2E-0.5"), size=3) + #annotate p-value
   labs(title="Starwars data: Heights (cm) by Species") + 
-  geom_point(aes(x=species, y=height, color=gender)) +
-  scale_color_manual(values=c("green","red")) +
-  guides(fill="none") 
+  geom_point(aes(x=species, y=height, color=gender)) + #add individual data points as scatterplot 
+  scale_color_manual(values=c("green","red")) + #color by gender
+  guides(fill="none") #remove species name from legend
 newton #like fig(ure) newton!
 ```
 
