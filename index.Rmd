@@ -12,7 +12,7 @@ output:
 
 Hi there! Welcome to my homepage for BIOL1007A: Reproducible Biology in R. Here you will find the links to daily and weekly assignments for the class. Somewhere on this page is an additional hidden link to a pretty cool website, so let me know if you find it! 
 
-I'm Ev (she/they) and I'm a senior neuroscience major at Middlebury College, and I'm from Chicago. I love writing poetry, dancing, climbing, and sudoku. Let me know if you have any good book or music recommendations, I'm always looking for some. Follow me on [Spotify](https://open.spotify.com/user/nekorocker?si=4b4e300ca84f4745) :)
+I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from Chicago. I love writing poetry, dancing, climbing, and sudoku. Let me know if you have any good book or music recommendations, I'm always looking for some. Follow me on [Spotify](https://open.spotify.com/user/nekorocker?si=4b4e300ca84f4745) :)
 
 ## Daily Assignments
 [Assignment 1](Assignment1.html)

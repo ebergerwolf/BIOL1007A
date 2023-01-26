@@ -41,15 +41,6 @@ qplot(x=x_trt, y=y_resp, geom="col",
       fill=I(c("maroon","slategrey","skyblue"))) 
 #colors found by googling "colors in r" and "virdis color map r"
 
-
-
-
-
-
-
-
-
-
 #### ggplot: uses dataframes instead of vectors ####
 
 p1 <- ggplot(data = d, mapping = aes(x=displ, y=cty, color=cyl)) + #color argument groups it by color

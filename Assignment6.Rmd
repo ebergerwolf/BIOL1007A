@@ -22,15 +22,16 @@ glimpse(iris)
 2. Create a new data frame `iris1` that contains only the species *virginica* and *versicolor* with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
 
 ```{r}
-iris1 <- filter(iris, Species %in% c("virginica","versicolor"), Sepal.Length > 6, Sepal.Width > 2.5)
-glimpse(iris1)
+iris1 <- filter(iris, Species %in% c("virginica","versicolor"), Sepal.Length > 6, Sepal.Width > 2.5) #correct
+# or iris1 <- filter(iris, Species == "virginica" | Species == "versicolor", Sepal.Length > 6, Sepal.Width > 2.5)
+glimpse(iris1) 
 # 56 observations, 5 variables
 ```
 
 3. Now, create an `iris2` data frame from `iris1` that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
 
 ```{r}
-iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
+iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width) #correct
 glimpse(iris2)
 # 56 observations, 3 variables
 ```
@@ -38,14 +39,14 @@ glimpse(iris2)
 4. Create an `iris3` data frame from `iris2` that orders the observations from largest to smallest sepal length. Show the first 6 rows of this data set.
 
 ```{r}
-iris3 <- arrange(iris2, by = desc(Sepal.Length))
+iris3 <- arrange(iris2, by = desc(Sepal.Length)) #correct
 head(iris3)
 ```
 
 5. Create an `iris4` data frame from `iris3` that creates a column with a sepal area (length * width) value for each observation. How many observations and variables are in the data set?
 
 ```{r}
-iris4 <- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
+iris4 <- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width) #correct
 glimpse(iris4)
 # 56 observations, 4 variables
 ```
@@ -54,7 +55,7 @@ glimpse(iris4)
 
 ```{r}
 irisTab <- summarize(iris4, meanLength = mean(Sepal.Length, na.rm=T),
-                     meanWidth = mean(Sepal.Width, na.rm=T), sampleSize = n())
+                     meanWidth = mean(Sepal.Width, na.rm=T), sampleSize = n()) #correct
 print(irisTab)
 ```
 
@@ -63,14 +64,15 @@ print(irisTab)
 ```{r}
 irisGrouped <- group_by(iris4, Species)
 iris5 <- summarize(irisGrouped, meanLength = mean(Sepal.Length, na.rm=T),
-                     meanWidth = mean(Sepal.Width, na.rm=T), sampleSize = n())
+                     meanWidth = mean(Sepal.Width, na.rm=T), sampleSize = n()) #correct
+# a more efficient edit would be to use . as the variable name since it is temporary
 print(iris5)
 ```
 
 8. In these exercises, you have successively modified different versions of the data frame `iris1 iris2 iris3 iris4 iris5`. At each stage, the output data frame from one operation serves as the input fro the next. A more efficient way to do this is to use the pipe operator `%>%` from the `tidyr` package. Rework all of your previous statements (except for `irisTab`) into an extended piping operation that uses iris as the input and generates `irisFinal` as the output.
 
 ```{r}
-irisFinal <- iris %>%
+irisFinal <- iris %>% #correct
   filter(Species %in% c("virginica","versicolor"), Sepal.Length > 6, Sepal.Width > 2.5) %>%
   select(Species, Sepal.Length, Sepal.Width) %>%
   arrange(by = desc(Sepal.Length)) %>%
@@ -79,4 +81,13 @@ irisFinal <- iris %>%
   summarize(meanLength = mean(Sepal.Length, na.rm=T),
             meanWidth = mean(Sepal.Width, na.rm=T), sampleSize = n()) %>%
   print()
+
+### Another solution: To make the calculations more suitable for piping, we would also want to use our mutated column for our summary and then arrange the final product:
+iris %>% 
+    filter(Species %in% c("virginica", "versicolor"), Sepal.Length > 6, Sepal.Width > 2.5) %>%
+    select(Species, Sepal.Length, Sepal.Width) %>%
+    mutate(Sepal.Area = Sepal.Length * Sepal.Width) %>%
+    group_by(Species) %>%
+    summarize(avg.Sepal.Length = mean(Sepal.Length), avg.Sepal.Width = mean(Sepal.Width), avg.Sepal.Area = mean(Sepal.Area), Sample.Size = n()) %>%
+    arrange(desc(avg.Sepal.Area)) 
 ```

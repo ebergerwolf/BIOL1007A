@@ -189,8 +189,9 @@ species <em>virginica</em> and <em>versicolor</em> with sepal lengths
 longer than 6 cm and sepal widths longer than 2.5 cm. How many
 observations and variables are in the data set?</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(iris, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>,<span class="st">&quot;versicolor&quot;</span>), Sepal.Length <span class="sc">&gt;</span> <span class="dv">6</span>, Sepal.Width <span class="sc">&gt;</span> <span class="fl">2.5</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iris1)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iris1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(iris, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>,<span class="st">&quot;versicolor&quot;</span>), Sepal.Length <span class="sc">&gt;</span> <span class="dv">6</span>, Sepal.Width <span class="sc">&gt;</span> <span class="fl">2.5</span>) <span class="co">#correct</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or iris1 &lt;- filter(iris, Species == &quot;virginica&quot; | Species == &quot;versicolor&quot;, Sepal.Length &gt; 6, Sepal.Width &gt; 2.5)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iris1) </span></code></pre></div>
 <pre><code>## Rows: 56
 ## Columns: 5
 ## $ Sepal.Length &lt;dbl&gt; 7.0, 6.4, 6.9, 6.5, 6.3, 6.6, 6.1, 6.7, 6.1, 6.1, 6.4, 6.…
@@ -205,7 +206,7 @@ that contains only the columns for Species, Sepal.Length, and
 Sepal.Width. How many observations and variables are in the data
 set?</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> <span class="fu">select</span>(iris1, Species, Sepal.Length, Sepal.Width)</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> <span class="fu">select</span>(iris1, Species, Sepal.Length, Sepal.Width) <span class="co">#correct</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iris2)</span></code></pre></div>
 <pre><code>## Rows: 56
 ## Columns: 3
@@ -218,7 +219,7 @@ set?</li>
 orders the observations from largest to smallest sepal length. Show the
 first 6 rows of this data set.</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> <span class="fu">arrange</span>(iris2, <span class="at">by =</span> <span class="fu">desc</span>(Sepal.Length))</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> <span class="fu">arrange</span>(iris2, <span class="at">by =</span> <span class="fu">desc</span>(Sepal.Length)) <span class="co">#correct</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris3)</span></code></pre></div>
 <pre><code>##     Species Sepal.Length Sepal.Width
 ## 1 virginica          7.9         3.8
@@ -233,7 +234,7 @@ creates a column with a sepal area (length * width) value for each
 observation. How many observations and variables are in the data
 set?</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris4 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(iris3, <span class="at">Sepal.Area =</span> Sepal.Length<span class="sc">*</span>Sepal.Width)</span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris4 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(iris3, <span class="at">Sepal.Area =</span> Sepal.Length<span class="sc">*</span>Sepal.Width) <span class="co">#correct</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iris4)</span></code></pre></div>
 <pre><code>## Rows: 56
 ## Columns: 4
@@ -248,7 +249,7 @@ average sepal width, and the sample size of the entire iris4 data frame
 and print irisTab.</li>
 </ol>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>irisTab <span class="ot">&lt;-</span> <span class="fu">summarize</span>(iris4, <span class="at">meanLength =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span>T),</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">meanWidth =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span>T), <span class="at">sampleSize =</span> <span class="fu">n</span>())</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">meanWidth =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span>T), <span class="at">sampleSize =</span> <span class="fu">n</span>()) <span class="co">#correct</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(irisTab)</span></code></pre></div>
 <pre><code>##   meanLength meanWidth sampleSize
 ## 1   6.698214  3.041071         56</code></pre>
@@ -259,8 +260,9 @@ in the <code>iris4</code> data frame and print <code>iris5</code>.</li>
 </ol>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>irisGrouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(iris4, Species)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>iris5 <span class="ot">&lt;-</span> <span class="fu">summarize</span>(irisGrouped, <span class="at">meanLength =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span>T),</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">meanWidth =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span>T), <span class="at">sampleSize =</span> <span class="fu">n</span>())</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris5)</span></code></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">meanWidth =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span>T), <span class="at">sampleSize =</span> <span class="fu">n</span>()) <span class="co">#correct</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a more efficient edit would be to use . as the variable name since it is temporary</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris5)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   Species    meanLength meanWidth sampleSize
 ##   &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;
@@ -276,7 +278,7 @@ all of your previous statements (except for <code>irisTab</code>) into
 an extended piping operation that uses iris as the input and generates
 <code>irisFinal</code> as the output.</li>
 </ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>irisFinal <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>irisFinal <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="co">#correct</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>,<span class="st">&quot;versicolor&quot;</span>), Sepal.Length <span class="sc">&gt;</span> <span class="dv">6</span>, Sepal.Width <span class="sc">&gt;</span> <span class="fl">2.5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Species, Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="at">by =</span> <span class="fu">desc</span>(Sepal.Length)) <span class="sc">%&gt;%</span></span>
@@ -290,6 +292,19 @@ an extended piping operation that uses iris as the input and generates
 ##   &lt;fct&gt;           &lt;dbl&gt;     &lt;dbl&gt;      &lt;int&gt;
 ## 1 versicolor       6.48      2.99         17
 ## 2 virginica        6.79      3.06         39</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Another solution: To make the calculations more suitable for piping, we would also want to use our mutated column for our summary and then arrange the final product:</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;versicolor&quot;</span>), Sepal.Length <span class="sc">&gt;</span> <span class="dv">6</span>, Sepal.Width <span class="sc">&gt;</span> <span class="fl">2.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Species, Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Sepal.Area =</span> Sepal.Length <span class="sc">*</span> Sepal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">avg.Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length), <span class="at">avg.Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width), <span class="at">avg.Sepal.Area =</span> <span class="fu">mean</span>(Sepal.Area), <span class="at">Sample.Size =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(avg.Sepal.Area)) </span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   Species    avg.Sepal.Length avg.Sepal.Width avg.Sepal.Area Sample.Size
+##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;       &lt;int&gt;
+## 1 virginica              6.79            3.06           20.8          39
+## 2 versicolor             6.48            2.99           19.4          17</code></pre>
     </section>
   </div>
 </div>
