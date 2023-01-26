@@ -34,4 +34,15 @@ I'm Ev (she/they) and I'm a senior neuroscience major at Middlebury College, and
 
 [Weekly Assignment 2](WeeklyAssignment2.html)
 
+## Class Notes
+<a href="/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/BIOL1007A/Notes/2023-01-12-Scripting-in-R.R"  download>1/12/23: Scripting in R</a>
+
+<a href="/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/BIOL1007A/Notes/2023-01-17-Data-Structures.R" download>1/17/23: Data structures</a>
+
+<a href="/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/BIOL1007A/Notes/2023-01-19-Structures-And-Functions.R" download>1/19/23: Structures and functions</a>
+
+<a href="/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/BIOL1007A/Notes/2023-01-23-The-Tidyverse.R" download>1/23/23: The tidyverse</a>
+
+<a href="/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/BIOL1007A/Notes/2023-01-24-ggplot2.R" download>1/24/23: Plotting with ggplot2</a>
+
 <abbr title="you found it!"><a href="https://zoomquilt.org/" target="_blank"><font color="white">.</a></font></abbr>
