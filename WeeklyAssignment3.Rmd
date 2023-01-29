@@ -16,12 +16,13 @@ Original Figure:
 ![](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/beeDataFigure.jpeg){width=25%}
 My attempt:
 
-```{r}
+```{r, echo=FALSE}
 # load in libraries
 library(tidyverse) #includes dplyr & ggplot
 library(ggthemes)
 library(patchwork)
 library(viridis)
+library(lme4)
 ```
 
 ```{r}
@@ -35,7 +36,11 @@ for(trial in seq(10,100,10)){
   learning_prop$propCorrect[trial/10] <- mean(learning_phase[learning_phase$Trial %in%
                                                                c((trial-9):trial),"Choice"])
 }
-# learning_prop$Trial <- factor(learning_prop$Trial, levels = seq(10,100,10))
+
+#glm line for the learning phase
+learning_glm <- glm(propCorrect ~ Trial, data = learning_prop, family = "binomial")
+ydata <- as.double(learning_glm$fitted.values)
+xdata <- learning_prop$Trial
 ```
 
 ```{r}
@@ -46,7 +51,8 @@ learn_plot <- ggplot(learning_prop, aes(x=Trial, y=propCorrect)) +
   xlab("Trials") +
   ylab("Proportion of correct choices") +
   scale_y_continuous(breaks=c((3:9)/10), limits = c(0.3,0.9)) +
-  scale_x_continuous(breaks=seq(10,100,10)) 
+  scale_x_continuous(breaks=seq(10,100,10)) +
+  geom_smooth(aes(x=xdata,y=ydata),method="lm")
   
 learn_plot
 
