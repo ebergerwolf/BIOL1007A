@@ -6,6 +6,8 @@ output:
   prettydoc::html_pretty:
     theme: architect
     highlight: github
+editor_options: 
+  chunk_output_type: console
 ---
 
 ### Recreating a figure
@@ -53,6 +55,10 @@ testing_prop <- testing_phase %>%
   summarize(meanCorrect = mean(Choice)) %>%
   add_column(direction = c("Same","Opposite","Same","Opposite")) %>%
   add_column(algebra = c("Addition tests","Addition tests","Subtraction tests","Subtraction tests"))
+
+
+# make confidence interval data
+
 ```
 
 ```{r}
@@ -80,12 +86,14 @@ test_plot <- ggplot() +
   geom_bar(data = testing_prop, aes(x=algebra, y=meanCorrect, 
                                    fill=direction, color=I("black")),
            position=position_dodge2(reverse=T,padding=0),stat="identity") +
-  geom_line(data=testing_prop,aes(x=algebra,y=meanCorrect)) + ###fix this
+  # geom_line(data=testing_prop,aes(x=algebra,y=meanCorrect)) + ###fix this
   xlab("") +
   ylab("Proportion of correct choices") +
   scale_fill_manual(values = c("#3fe0d0","#ee82ef")) +
   scale_y_continuous(breaks=seq(0,1,0.2),limits=c(0,1)) +
-  theme_base() 
+  theme_base() +
+  geom_errorbar(data=testing_prop, aes(x=algebra, ymax=c(1,0.8,1,0.8), ymin=c(0.5,0.5,0.5,0.5)),
+                position=position_dodge2(reverse=T, padding=0))
   
 
 test_plot
