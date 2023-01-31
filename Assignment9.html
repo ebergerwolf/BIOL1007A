@@ -185,7 +185,7 @@ vector.</li>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;vector =&quot;</span>, my_vec, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">number of zeros =&quot;</span>, <span class="fu">zeroCount</span>(my_vec), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>## vector = 2 0 2 3 0 3 5 1 4 4 
+<pre><code>## vector = 4 1 4 0 5 4 5 4 0 1 
 ## number of zeros = 2</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Write a function that takes as input two integers representing the
@@ -205,8 +205,11 @@ the product of the row number x the column number.</li>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">return</span>(mat_out) </span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">prodMat</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span>),<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span>))</span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-## [1,]    1    2    3    4    5    6    7</code></pre>
+<pre><code>##      [,1]
+## [1,]    1
+## [2,]    2
+## [3,]    3
+## [4,]    4</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Use a <code>for</code> loop to repeat your previous functions from
 Weekly Assignment 2 (which simulate a data frame and extract a p-value)
@@ -217,6 +220,52 @@ Weekly Assignment 2 (which simulate a data frame and extract a p-value)
 replicate number and 1 column for the p-values (a total of 2 columns and
 100 rows).</li>
 </ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dFrameMaker <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">stdevs=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>), <span class="at">each_col=</span><span class="dv">25</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  d_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow =</span> each_col<span class="sc">*</span><span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="co">#create data frame with 50 rows and 2 columns</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(d_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>,<span class="st">&quot;Value&quot;</span>) <span class="co">#name the columns &quot;Type&quot; and &quot;Value&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Type&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>,<span class="st">&quot;Treatment&quot;</span>),<span class="at">each=</span>each_col) <span class="co">#Type: 25 Control, 25 Treatment</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  d_frame[<span class="st">&quot;Value&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span>each_col,<span class="at">mean=</span>means[<span class="dv">1</span>],<span class="at">sd=</span>stdevs[<span class="dv">1</span>]),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">rnorm</span>(<span class="at">n=</span>each_col,<span class="at">mean=</span>means[<span class="dv">2</span>],<span class="at">sd=</span>stdevs[<span class="dv">2</span>])) <span class="co">#Value: 2 types of normal distributions</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(d_frame) <span class="co"># returns the data frame</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>anovaTest2 <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">d_frame=</span><span class="cn">NULL</span>){</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Default data frame randomly generated from data frame maker</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(d_frame)){</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    d_frame <span class="ot">&lt;-</span> <span class="fu">dFrameMaker</span>()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if the data frame doesn&#39;t have 2 columns, return an error message</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(d_frame)<span class="sc">!=</span><span class="dv">2</span>){</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">&quot;Function error: The data frame must have 2 columns.&quot;</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(d_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Explanatory&quot;</span>,<span class="st">&quot;Response&quot;</span>) <span class="co">#rename column names</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  my_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(Response <span class="sc">~</span> Explanatory, <span class="at">data =</span> d_frame) <span class="co">#run anova</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  anova_tbl <span class="ot">&lt;-</span> <span class="fu">summary</span>(my_anova) <span class="co">#extract anova summary</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  pOut <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">pVal=</span>anova_tbl[[<span class="dv">1</span>]][<span class="st">&quot;Explanatory&quot;</span>,<span class="st">&quot;Pr(&gt;F)&quot;</span>]) <span class="co">#extract p-value</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pOut) <span class="co">#output p-value</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#for-loop to find p-value 100 times</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>boots_dframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">rep_num =</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">100</span>), <span class="at">p_val =</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">100</span>))</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  boots_dframe[i,<span class="st">&quot;rep_num&quot;</span>] <span class="ot">&lt;-</span> i</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  boots_dframe[i,<span class="st">&quot;p_val&quot;</span>] <span class="ot">&lt;-</span> <span class="fu">anovaTest2</span>()</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boots_dframe)</span></code></pre></div>
+<pre><code>##   rep_num        p_val
+## 1       1 1.140107e-50
+## 2       2 2.469973e-54
+## 3       3 1.275677e-48
+## 4       4 6.574426e-46
+## 5       5 4.719114e-49
+## 6       6 9.862097e-57</code></pre>
     </section>
   </div>
 </div>

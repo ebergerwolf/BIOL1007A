@@ -49,5 +49,48 @@ prodMat(sample(1:10,1),sample(1:10,1))
   - Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).
 
 
+```{r}
+
+dFrameMaker <- function(means=c(10,45),stdevs=c(1.5,2), each_col=25) {
+  d_frame <- data.frame(matrix(nrow = each_col*2, ncol = 2)) #create data frame with 50 rows and 2 columns
+  colnames(d_frame) <- c("Type","Value") #name the columns "Type" and "Value"
+  
+  d_frame["Type"] <- rep(c("Control","Treatment"),each=each_col) #Type: 25 Control, 25 Treatment
+  d_frame["Value"] <- c(rnorm(n=each_col,mean=means[1],sd=stdevs[1]),
+                        rnorm(n=each_col,mean=means[2],sd=stdevs[2])) #Value: 2 types of normal distributions
+  
+  return(d_frame) # returns the data frame
+}
+
+
+anovaTest2 <- function(d_frame=NULL){
+  # Default data frame randomly generated from data frame maker
+  if (is.null(d_frame)){
+    d_frame <- dFrameMaker()
+  }
+  
+  # if the data frame doesn't have 2 columns, return an error message
+  if (length(d_frame)!=2){
+    return("Function error: The data frame must have 2 columns.")
+  }
+  
+  colnames(d_frame) <- c("Explanatory","Response") #rename column names
+  my_anova <- aov(Response ~ Explanatory, data = d_frame) #run anova
+  anova_tbl <- summary(my_anova) #extract anova summary
+  pOut <- c(pVal=anova_tbl[[1]]["Explanatory","Pr(>F)"]) #extract p-value
+  
+  return(pOut) #output p-value
+}
+
+#for-loop to find p-value 100 times
+boots_dframe <- data.frame(rep_num = rep(NA,100), p_val = rep(NA,100))
+for(i in 1:100){
+  boots_dframe[i,"rep_num"] <- i
+  boots_dframe[i,"p_val"] <- anovaTest2()
+}
+
+head(boots_dframe)
+
+```
 
 
