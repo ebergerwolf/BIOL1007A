@@ -1,0 +1,26 @@
+---
+title: "Weekly Assignment 4"
+author: "Ev Berger-Wolf"
+date: "2023-01-31"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+```{r, message=FALSE}
+# Load libraries
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+```
+
+Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.
+
+```{r}
+## Simulating data: 
+# Is there a difference in the number of spikes of inhibitory and excitatory neurons during rest vs. a memory task?
+
+
+
+```
+
