@@ -1,0 +1,79 @@
+---
+title: "My Neuron Analysis"
+author: "Ev Berger-Wolf"
+date: "2023-02-02"
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+### Neuron analysis from example data
+Using the `nat` package, I chose to analyze and plot some of the sample neuron data that was included in the package. This dataset contains information about Drosophila (fly) olfactory projection neurons, obtained from https://doi.org/10.1016/j.cell.2007.01.040.
+
+```{r, setup, message=FALSE}
+# Setting up libraries
+library(tidyverse)
+library(ggplot2)
+library(nat)
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+First, let's load in the data
+```{r}
+data("Cell07PNs")
+dros_data <- Cell07PNs #rename it to something more informative
+length(dros_data) #20 neurons
+head(dros_data) #let's take a peek at the information included
+```
+Glomeruli are a way to section groups of neurons. Neurons of the same glomerular class typically have similar structure, function, and/or location. We can look at the different glomerular classes of the neurons in this dataset. 
+
+```{r}
+summary(dros_data[,"Glomerulus"]) #number of each neurons in each glomerular class
+```
+
+Let's say we want to see if there is a difference in the number of segments between neurons in different glomeruli. We can start by extracting the number of segments for each neuron to see if they do generally differ.
+
+```{r, fig.dim=c(3,3)}
+segment_data <- data.frame(neuron_ID = c(1:length(dros_data)), num_segs = rep(NA, length(dros_data)))
+for(i in 1:length(dros_data)){
+  segment_data[i,"num_segs"] <- dros_data[[i]]$NumSegs
+}
+
+hist(segment_data$num_segs, breaks=20)
+```
+
+It looks like we have a generally bimodal distribution of the number of segments. Let's see if it significantly differs between glomeruli.
+
+```{r, fig.dim=c(3,3)}
+segment_data$glomerulus <- dros_data[,"Glomerulus"]
+ggplot(segment_data, aes(x=glomerulus, y=num_segs, fill=glomerulus)) +
+  geom_boxplot() +
+  theme(legend.position="none")
+```
+
+At first glance, DP1m neurons seem to have a significantly different number of segments than the other glomeruli. Let's double check this with an ANOVA.
+
+```{r}
+segment_data$glomerulus <- factor(segment_data$glomerulus)
+glom_aov <- aov(num_segs ~ glomerulus, data=segment_data)
+summary(glom_aov)
+```
+
+Now that we know that there is at least one signifcantly different glomerulus, let's conduct a post-hoc test to determine which of the glomeruli significantly differ in segment number.
+
+```{r}
+TukeyHSD(glom_aov)
+```
+Here, we can confirm that it is the DP1m glomerulus that has a significantly different number of segments. Let's take a look at the morphology of the DP1m neurons versus the rest.
+
+
+```{r}
+plot(dros_data, subset=Glomerulus!="DP1m", col='red', 
+     WithNodes=F, main="DP1m vs. all other neurons") 
+plot(dros_data, subset=Glomerulus=="DP1m", add=TRUE, col="blue", WithNodes=F)
+legend('bottomright', legend = c("Not DP1m","DP1m"), fill=c("red","blue"))
+```
+
+**Now we can see the qualitative difference in the number of segments of DP1m neurons from non-DP1m neurons. And that's one example of what the `nat` package can be used for!**
