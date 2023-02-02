@@ -10,7 +10,7 @@ output:
 
 For my final assignment, I decided to look into the The Neuroanatomy Toolbox (nat) Package, which is very useful for analyzing neuronal data. As a neuroscience major who will likely have to perform analyses in R on data from individual neurons very soon, I figured that this would be a good package to begin getting comfortable with.
 
-[Here](FinalAssignment-Intro-to-nat.html) is a bit of a tutorial I summarized from the documentation to learn more about the package, and [here](FinalAssignment-SampleData.html) is the analysis I conducted on my own, exploring more of the package's capabilities in statistical analysis and data visualization. Enjoy!
+[Here](FinalAssignment-intro-to-nat.html) is a bit of a tutorial I summarized from the documentation to learn more about the package, and [here](FinalAssignment-SampleData.html) is the analysis I conducted on my own, exploring more of the package's capabilities in statistical analysis and data visualization. Enjoy!
 
 Check out this example figure from people with *way* more experience than me!
 
