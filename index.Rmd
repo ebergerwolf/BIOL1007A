@@ -40,6 +40,9 @@ I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from 
 
 [Weekly Assignment 3](WeeklyAssignment3.html)
 
+## Final Assignment:
+[Neuroanatomy package!](FinalAssignment.html)
+
 ## Class Notes
 <a href="Notes/2023-01-12-Scripting-in-R.R" download>1/12/23: Scripting in R</a>
 
