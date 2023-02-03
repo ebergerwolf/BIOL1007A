@@ -16,11 +16,56 @@ library(ggthemes)
 
 Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.
 
-```{r}
+```{r, warning=FALSE}
 ## Simulating data: 
 # Is there a difference in the number of spikes of inhibitory and excitatory neurons during rest vs. a memory task?
+spike_data <- data.frame(neuron.type = rep(c("excitatory","inhibitory"), each=25), 
+                         task = rep(c("memory","rest"), times=25))
+set.seed(459)
+for(i in 1:dim(spike_data)[1]){
+  if(spike_data[i,"neuron.type"] == "excitatory"){
+    m <- 50; stdev <- 8} else {
+      m <- 25; stdev <- 12}
+  if(spike_data[i,"task"] == "memory"){
+    m <- m * 1.25 } else {
+      m <- m * 0.75 }
+  spike_data[i,"spike.num"] <- abs(round(rnorm(1, mean=m, sd=stdev)))
+}
 
-
-
+spike_data$neuron.type <- factor(spike_data$neuron.type)
+spike_data$task <- factor(spike_data$task)
+spike_sum <- spike_data %>%
+  group_by(neuron.type, task) %>%
+  summarize(meanSpike = mean(spike.num), sdSpike = sd(spike.num)) %>%
+  print()
 ```
+
+```{r}
+## 2-way ANOVA
+spike_aov <- aov(spike.num ~ neuron.type * task, data = spike_data)
+summary(spike_aov)
+```
+There seems to be a significant difference in spike number between excitatory and inhibitory neurons, as well as between the memory task and rest. However, there does not seem to be a significant interaction.
+
+```{r}
+## Post-hoc multiple comparisons test
+TukeyHSD(spike_aov)
+```
+Let's graph this!
+
+```{r}
+ggplot(spike_sum,aes(x = task, y= meanSpike, fill=neuron.type)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_errorbar(aes(ymin=meanSpike-sdSpike,
+                    ymax=meanSpike+sdSpike), position=position_dodge2(padding=0.8), linewidth=0.35) +
+  scale_fill_manual(values=c("#42A5F5","#81C784"),name = "Neuron Type") +
+  labs(x="Task",y="Mean Number of Spikes") +
+  theme_bw()
+```
+
+Neurons in this simulated data have significantly more spikes during a memory task ($\Delta$M = `r abs(signif(mean(unlist(spike_sum[spike_sum$task=="memory","meanSpike"]))-mean(unlist(spike_sum[spike_sum$task=="rest","meanSpike"])), digits=4))`, $\Delta$SD = `r abs(signif(mean(unlist(spike_sum[spike_sum$task=="memory","sdSpike"]))-mean(unlist(spike_sum[spike_sum$task=="rest","sdSpike"])),digits=4))`, *p* < .01), as well as significantly more spikes if they are excitatory, rather than inhibitory ($\Delta$M = `r abs(signif(mean(unlist(spike_sum[spike_sum$neuron.type=="excitatory","meanSpike"]))-mean(unlist(spike_sum[spike_sum$neuron.type=="inhibitory","meanSpike"])), digits=4))`, $\Delta$SD = `r abs(signif(mean(unlist(spike_sum[spike_sum$neuron.type=="excitatory","sdSpike"]))-mean(unlist(spike_sum[spike_sum$neuron.type=="inhibitory","sdSpike"])),digits=4))`, *p* < .01).
+
+
+
+
 

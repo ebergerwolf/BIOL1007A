@@ -40,6 +40,8 @@ I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from 
 
 [Weekly Assignment 3](WeeklyAssignment3.html)
 
+[Weekly Assignment 4](WeeklyAssignment4.html)
+
 ## Final Assignment:
 [Neuroanatomy package!](FinalAssignment.html)
 
@@ -54,6 +56,8 @@ I'm Ev (she/they), a senior neuroscience major at Middlebury College who's from 
 
 <a href="Notes/2023-01-24-ggplot2.R" download>1/24/23: Plotting with ggplot2</a>
 
-<a href="Notes/2023-01-25-Loading-Data.R" download>1/26/23: Loading data</a>
+<a href="Notes/2023-01-26-Loading-Data.R" download>1/26/23: Loading data</a>
+
+<a href="Notes/2023-01-30-Analysis-and-Control-Structures.R" download>1/30/23: Analysis and Control Structures</a>
 
 <abbr title="you found it!"><a href="https://zoomquilt.org/" target="_blank"><font color="white">.</a></font></abbr>
