@@ -14,7 +14,7 @@ editor_options:
 
 Go to Dryad to choose a published paper and data set and reconstruct your own figure. Code a ggplot graph that looks as close to the published figure as you can.
 
-Original Figure:
+Original Figure (from https://www.science.org/doi/10.1126/sciadv.aav0961#F2):
 
 ![](/Users/ev/Desktop/Middlebury/Classes/Senior/ReproducibleBio/Images/beeDataFigure.jpeg){width=50%}  
 My attempt:
